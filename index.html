@@ -29,13 +29,13 @@
         <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
         -->
 
-        <link rel="stylesheet" href="assets/css/boot.css">
+        <link rel="stylesheet" href="./assets/css/boot.css">
       
     </head>
     <body>
-        <div id="overflower"></div>
+        <div id="overflower"><div class="currentMobilePage"></div></div>
         <!-- Add your site or application content here -->
-
+        <!--
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.hammer.min.js"></script>
         <script src="assets/js/underscore.js"></script>
@@ -58,7 +58,7 @@
         <script src="app/view.menu.js"></script>
         <script src="app/view.topbar.js"></script>
         <script src="app/router.js"></script>
-
+        -->
 
 <script id="popin_tpl" type="text/template">
     <div class="modal-title">
@@ -72,11 +72,6 @@
             <a href="#" type="submit" name="submit" class="btn btn-blue-flat" id="btnAaddContacts">Action</a>
         </div>  
     </div>
-</script>
-
-<script id="page_template" type="text/template">
-    This is a page
-
 </script>
 
 <script id="topbar_tpl" type="text/template">
@@ -108,15 +103,23 @@
 
 
 <script>
-document.addEventListener("touchstart", function(){}, true);
+    document.addEventListener("touchstart", function(){}, true);
 
-window.addEventListener("load",function() {
-   setTimeout(function(){
-    window.scrollTo(0, 0);
-    }, 0);
- });
+    window.addEventListener("load",function() {
+       setTimeout(function(){
+        window.scrollTo(0, 0);
+        }, 0);
+     });
 
-Backbone.history.start({pushState: false});
+    function initApp() {
+
+        var s = document.createElement('script');
+        s.src = './assets/js/require.js';
+        s.setAttribute("data-main", "./app/config.js");
+
+        document.body.appendChild(s);
+    };
+    initApp();
 
 </script>
     </body>
